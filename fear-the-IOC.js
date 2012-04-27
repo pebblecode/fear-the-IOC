@@ -1,8 +1,8 @@
 /*
- * jQuery Highlight plugin
+ * $ Highlight plugin
  *
  * Based on highlight v3 by Johann Burkard
- * http://johannburkard.de/blog/programming/javascript/highlight-javascript-text-higlighting-jquery-plugin.html
+ * http://johannburkard.de/blog/programming/javascript/highlight-javascript-text-higlighting-$-plugin.html
  *
  * Code a little bit refactored and cleaned (in my humble opinion).
  * Most important changes:
@@ -43,7 +43,7 @@
  *
  */
 
-jQuery.extend({
+$.extend({
     highlight: function (node, re, nodeName, className) {
         if (node.nodeType === 3) {
             var match = node.data.match(re);
@@ -61,16 +61,16 @@ jQuery.extend({
                 !/(script|style)/i.test(node.tagName) && // ignore script and style nodes
                 !(node.tagName === nodeName.toUpperCase() && node.className === className)) { // skip if already highlighted
             for (var i = 0; i < node.childNodes.length; i++) {
-                i += jQuery.highlight(node.childNodes[i], re, nodeName, className);
+                i += $.highlight(node.childNodes[i], re, nodeName, className);
             }
         }
         return 0;
     }
 });
 
-jQuery.fn.unhighlight = function (options) {
+$.fn.unhighlight = function (options) {
     var settings = { className: 'highlight', element: 'span' };
-    jQuery.extend(settings, options);
+    $.extend(settings, options);
 
     return this.find(settings.element + "." + settings.className).each(function () {
         var parent = this.parentNode;
@@ -79,17 +79,17 @@ jQuery.fn.unhighlight = function (options) {
     }).end();
 };
 
-jQuery.fn.highlight = function (words, options) {
+$.fn.highlight = function (words, options) {
     var settings = { className: 'highlight', element: 'span', caseSensitive: false, wordsOnly: false };
-    jQuery.extend(settings, options);
+    $.extend(settings, options);
     
     if (words.constructor === String) {
         words = [words];
     }
-    words = jQuery.grep(words, function(word, i){
+    words = $.grep(words, function(word, i){
       return word != '';
     });
-    words = jQuery.map(words, function(word, i) {
+    words = $.map(words, function(word, i) {
       return word.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
     });
     if (words.length == 0) { return this; };
@@ -102,7 +102,7 @@ jQuery.fn.highlight = function (words, options) {
     var re = new RegExp(pattern, flag);
     
     return this.each(function () {
-        jQuery.highlight(this, re, settings.element, settings.className);
+        $.highlight(this, re, settings.element, settings.className);
     });
 };
 
