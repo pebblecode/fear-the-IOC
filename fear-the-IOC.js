@@ -109,7 +109,8 @@ $.fn.highlight = function (words, options) {
 //Fear the IOC by Mark Durrant & pebble {code}
 
 $(document).ready(function () {
-  $("body").highlight([
+  
+  var wordList = [
     "Olympic",
     "Olympics",
     "Olympian",
@@ -157,7 +158,7 @@ $(document).ready(function () {
     "Cisco",
     "Deloitte",
     "Thomas Cook",
-    "UPS"
+    "UPS",
     "Aggreko",
     "Airwave",
     "Atkins",
@@ -310,10 +311,21 @@ $(document).ready(function () {
     "athletes",
     "athlete",
     "team"
-    ]);
+    ];
+
+  $("body").highlight(wordList);
+
   $(".highlight").css({"background":"black","color":"transparent","transform":"rotate(2deg)","-ms-transform":"rotate(2deg)","-moz-transform":"rotate(2deg)","-webkit-transform":"rotate(2deg)","-o-transform":"rotate(2deg)","display": "inline-block"
   });
   
-  $('img[src*="Olympic"], img[src*="Olympics"], img[src*="Olympian"], img[src*="Olympiad"], img[src*="Paralympic"], img[src*="Paralympics"], img[src*="Paralympian"], img[src*="Paralympiad"], img[src*="ioc"], img[src*="ipc"], img[src*="games"], img[src*="london"], img[src*="2012"], img[src*="medal"], img[src*="gold"], img[src*="silver"], img[src*="bronze"], img[src*="team GB"], img[src*="get set"], img[src*="games maker"], img[src*="javelin"]').attr("src","http://pebblecode.github.com/fear-the-IOC/img/blank.gif").css({"background":"black","transform":"rotate(-1deg)","-ms-transform":"rotate(-1deg)","-moz-transform":"rotate(-1deg)","-webkit-transform":"rotate(-1deg)","-o-transform":"rotate(-1deg)","display": "inline-block"
-  });;
+  var imgSelector = "";
+  for (var i = 0; i < wordList.length; i++) {
+    imgSelector += "img[src*='" + wordList[i] + "'], img[alt*='" + wordList[i] + "']";
+    if (i < wordList.length - 1) {
+      imgSelector += ",";
+    }
+  }
+
+  $(imgSelector).attr("src","http://pebblecode.github.com/fear-the-IOC/img/blank.gif")
+    .css({"background":"black","transform":"rotate(-1deg)","-ms-transform":"rotate(-1deg)","-moz-transform":"rotate(-1deg)","-webkit-transform":"rotate(-1deg)","-o-transform":"rotate(-1deg)","display": "inline-block"});
 });
