@@ -14,7 +14,7 @@ var code = [''];
 
 readFileWrapper('./../fear-the-IOC.js', function(js) {
      // encapsulates fear-the-ioc in executeBookmarklet() in order to call it when jquery is loaded (see bootstrap.js)
-    code.push('function executeBookmarklet() {');
+    code.push('function executeBookmarklet($) {');
     code.push(js);
     code.push('}');
 
@@ -25,4 +25,3 @@ readFileWrapper('./../fear-the-IOC.js', function(js) {
         console.log("javascript:" + encodeURIComponent(code)); // generates final output
     });
 });
-
