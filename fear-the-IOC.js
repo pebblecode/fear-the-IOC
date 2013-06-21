@@ -87,12 +87,12 @@ $.fn.highlight = function (words, options) {
         words = [words];
     }
     words = $.grep(words, function(word, i){
-      return word != '';
+      return word !== '';
     });
     words = $.map(words, function(word, i) {
       return word.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
     });
-    if (words.length == 0) { return this; };
+    if (words.length === 0) { return this; };
 
     var flag = settings.caseSensitive ? "" : "i";
     var pattern = "(" + words.join("|") + ")";
